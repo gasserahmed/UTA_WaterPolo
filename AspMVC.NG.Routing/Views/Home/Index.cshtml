@@ -1,0 +1,259 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UTA Water Polo</title>
+    
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../Assets/css/custom.min.css">
+    <link rel="stylesheet" href="../Assets/css/Site.css">
+    <link rel="stylesheet" href="~/Assets/css/images3D.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+    <script src="//code.angularjs.org/snapshot/angular-route.js"></script>
+
+    <script src="//code.angularjs.org/snapshot/angular-animate.min.js"></script>
+    <script src="//code.angularjs.org/snapshot/angular-messages.min.js"></script>
+    <script src="//code.angularjs.org/snapshot/angular-aria.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    
+   
+        
+    <style type="text/css">
+        /* required style*/
+        .none {
+            display: none;
+        }
+
+        /* optional styles */
+        table tr th, table tr td {
+            font-size: 1.2rem;
+        }
+
+        .row {
+            margin: 20px 20px 20px 20px;
+            width: 100%;
+        }
+
+        .glyphicon {
+            font-size: 20px;
+        }
+
+        .glyphicon-plus {
+            float: right;
+        }
+
+        a.glyphicon {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .glyphicon-trash {
+            margin-left: 10px;
+        }
+
+        .alert {
+            width: 50%;
+            border-radius: 0;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .enter_login {
+            background: #122737;
+            background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #081d2f), color-stop(1, #707d87));
+            float: left;
+            border-right: 1px solid #4c6d8e;
+            border-bottom: 1px solid #193a54;
+            -webkit-transform: skewX(-15deg);
+            -moz-transform: skewX(-15deg);
+            -ms-transform: skewX(-15deg);
+            -o-transform: skewX(-15deg);
+            transform: skewX(-15deg);
+        }
+        #navbar-main ul li.enter_login a:hover,
+        #navbar-main ul li.enter_login a:focus {
+            background: #122737;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+</head>
+<body ng-app="UTAWaterPoloApp">
+<div class="navbar navbar-default navbar-static-top"  style="top: 20px">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="logo"><img style="width:130px; height: 110px;" src="~/Assets/Images/wplogo.png"></a>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a href="/">HOME</a>
+                </li>
+                <li>
+                    <a href="About">ABOUT</a>
+                </li>
+                <li>
+                    <a href="Events">EVENTS</a>
+                </li>
+                <li>
+                    <a href="Gallery">GALLERY</a>
+                </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="enter_login" ng-show="admin_status"><a href="register">ADD NEW MEMBER</a></li>
+                <li class="enter_login" ng-show="admin_status"><a href="Admin">ADMIN</a></li>
+                <li class="enter_login" ng-show="login_status"><a href="logout">LOGOUT</a></li>
+                <li class="enter_login" ng-show="!login_status"><a href="login">LOGIN</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div ng-view></div>
+
+@Scripts.Render("~/bundles/UTAWaterPoloApp")
+</body>
+</html>
+
+<br/><br />
+<footer class="footer-distributed">
+
+    <div class="footer-left" style="margin-left: 50px;">
+        
+        <div class="footer-logo">
+            &emsp;&emsp;&emsp;<a href="/"><img src="~/Assets/Images/wplogo.png" class="logo" scale="0"></a>
+        </div>
+        <br/><br /><br /><br /><br /><br /><br /><br />
+        <h3>UTA<span>Waterpolo</span></h3>
+
+        <p class="footer-links">
+            <a href="/">Home</a>
+            ·
+            <a href="About">About</a>
+            ·
+            <a href="Events">Events</a>
+            ·
+            <a href="Gallery">Gallery</a>
+            
+        </p>
+
+        <p class="footer-company-name">University of Texas at Arlington &copy; 2017</p>
+    </div>
+
+    <div class="footer-center" style="margin-left: -80px;">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>500 W Nedderman St</span> Arlington, Texas</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+1 (817) 272-3277</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:waterpolo.uta@gmail.com">waterpolo.uta@gmail.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>About Us</span>
+            UTA Water Polo-Sport Club is a non-profit organization that aims at fostering the growth and development of the sport of water polo in the University of Texas at Arlington and building a strong Water Polo team that represents the university to participate in matches and tournaments against other universities and clubs by providing a world-class training and competition environment for our players
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="https://www.facebook.com/WaterPoloUTA"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/UTAH2OPolo"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.instagram.com/utawaterpolo/"><i class="fa fa-instagram"></i></a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<footer>
+    <div class="container">
+        <div class="footer_logo">
+            <a href="/"><img src="~/Assets/Images/wplogo.png" class="footer_logo" scale="0"></a>
+        </div>
+        <div class="col-6">
+            <p></p>
+            <div class="col-4">
+                <div class="social-icon">
+                    <ul id="social">
+                        <li></li>
+                        <li><a href="https://www.facebook.com/pages/South-Florida-Water-Polo-Club/181838835180599?ref=hl"><img src="http://www.southfloridawpc.com/wp-content/themes/equipoNew/css/images/soc-facebook.png" alt="" scale="0"></a></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                <p class="copyright">© 2017 - All Rights Reserved</p>
+            </div>
+        </div>
+        <div class="col-2 foot_left_menu">
+            <h3>UTAWP</h3>
+            <ul id="menu-footer" class="">
+                <li id="menu-item-719" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-348 current_page_item home"><a href="http://www.southfloridawpc.com/">Home</a></li>
+                <li id="menu-item-1203" class="menu-item menu-item-type-post_type menu-item-object-page forums"><a href="http://www.southfloridawpc.com/forums/">Forums</a></li>
+                <li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page about-us"><a href="http://www.southfloridawpc.com/about-us/">About Us</a></li>
+                <li id="menu-item-722" class="menu-item menu-item-type-post_type menu-item-object-page coaches"><a href="http://www.southfloridawpc.com/coaches/">Coaches</a></li>
+                <li id="menu-item-721" class="menu-item menu-item-type-post_type menu-item-object-page club-practices"><a href="http://www.southfloridawpc.com/club-practices/">Club Practices</a></li>
+                <li id="menu-item-726" class="menu-item menu-item-type-post_type menu-item-object-page programs"><a href="http://www.southfloridawpc.com/programs/">Programs</a></li>
+                <li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page events"><a href="http://www.southfloridawpc.com/events/">Events</a></li>
+                <li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page gallery"><a href="http://www.southfloridawpc.com/gallery/">Gallery</a></li>
+            </ul>
+        </div>
+        <div class="col-2 foot_right_menu">
+            <h3>International</h3>
+            <ul id="menu-international-archive" class="">
+                <li id="menu-item-1191" class="menu-item menu-item-type-post_type menu-item-object-page 14th-results"><a href="http://www.southfloridawpc.com/14th-results/">14th Results</a></li>
+                <li id="menu-item-784" class="menu-item menu-item-type-post_type menu-item-object-page 13th-final-standings"><a href="http://www.southfloridawpc.com/13th-results/">13th Final Standings</a></li>
+                <li id="menu-item-785" class="menu-item menu-item-type-post_type menu-item-object-page 12th-final-standings"><a href="http://www.southfloridawpc.com/12th-final-standings/">12th Final Standings</a></li>
+                <li id="menu-item-717" class="menu-item menu-item-type-post_type menu-item-object-page 11th-final-standings"><a href="http://www.southfloridawpc.com/internationals-results-2013/">11th Final Standings</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>*@

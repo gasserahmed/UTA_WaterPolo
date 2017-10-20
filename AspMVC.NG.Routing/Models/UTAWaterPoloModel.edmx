@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="utawaterpoloModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="about">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="mission" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="exec_board" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="practices" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="location" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fee" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="start_time" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="end_time" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="event_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="ticket_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="location" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fee" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="start_time" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="end_time" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="photo_id" />
+          </Key>
+          <Property Name="photo_id" Type="int" Nullable="false" />
+          <Property Name="file_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="file_path" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" />
+          <Property Name="news_date" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+          </Key>
+          <Property Name="uta_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="ticket_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="uta_id" />
+          </Key>
+          <Property Name="uta_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="first_name" Type="varchar" MaxLength="100" />
+          <Property Name="last_name" Type="varchar" MaxLength="100" />
+          <Property Name="role" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="last_activity" Type="datetime" Precision="0" />
+        </EntityType>
+        <Function Name="getEventList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="utawaterpolo">
+          <Parameter Name="uta_id" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="utawaterpoloModelStoreContainer">
+          <EntitySet Name="about" EntityType="Self.about" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="event" EntityType="Self.event" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="event_list" EntityType="Self.event_list" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="gallery" EntityType="Self.gallery" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="news" EntityType="Self.news" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="ticket" EntityType="Self.ticket" Schema="utawaterpolo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="utawaterpolo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="utawaterpoloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="about">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="mission" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="exec_board" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="practices" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" />
+          <Property Name="fee" Type="Decimal" Nullable="false" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="event_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="ticket_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" />
+          <Property Name="fee" Type="Decimal" Nullable="false" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="photo_id" />
+          </Key>
+          <Property Name="photo_id" Type="Int32" Nullable="false" />
+          <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="file_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="news_date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+          </Key>
+          <Property Name="uta_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="ticket_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="uta_id" />
+          </Key>
+          <Property Name="uta_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_activity" Type="DateTime" />
+        </EntityType>
+        <EntityContainer Name="utawaterpoloEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="abouts" EntityType="Self.about" />
+          <EntitySet Name="events" EntityType="Self.event" />
+          <EntitySet Name="event_list" EntityType="Self.event_list" />
+          <EntitySet Name="galleries" EntityType="Self.gallery" />
+          <EntitySet Name="news" EntityType="Self.news" />
+          <EntitySet Name="tickets" EntityType="Self.ticket" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <FunctionImport Name="getEventList">
+            <Parameter Name="uta_id" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="utawaterpoloModelStoreContainer" CdmEntityContainer="utawaterpoloEntities">
+          <EntitySetMapping Name="abouts">
+            <EntityTypeMapping TypeName="utawaterpoloModel.about">
+              <MappingFragment StoreEntitySet="about">
+                <ScalarProperty Name="mission" ColumnName="mission" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="exec_board" ColumnName="exec_board" />
+                <ScalarProperty Name="practices" ColumnName="practices" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="utawaterpoloModel.event">
+              <MappingFragment StoreEntitySet="event">
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="event_list">
+            <EntityTypeMapping TypeName="utawaterpoloModel.event_list">
+              <MappingFragment StoreEntitySet="event_list">
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="galleries">
+            <EntityTypeMapping TypeName="utawaterpoloModel.gallery">
+              <MappingFragment StoreEntitySet="gallery">
+                <ScalarProperty Name="photo_id" ColumnName="photo_id" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_path" ColumnName="file_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="utawaterpoloModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="news_date" ColumnName="news_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tickets">
+            <EntityTypeMapping TypeName="utawaterpoloModel.ticket">
+              <MappingFragment StoreEntitySet="ticket">
+                <ScalarProperty Name="uta_id" ColumnName="uta_id" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="utawaterpoloModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="uta_id" ColumnName="uta_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="last_activity" ColumnName="last_activity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getEventList" FunctionName="utawaterpoloModel.Store.getEventList" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

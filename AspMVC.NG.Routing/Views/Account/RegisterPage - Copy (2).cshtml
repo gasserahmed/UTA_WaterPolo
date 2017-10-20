@@ -1,0 +1,120 @@
+﻿@*register page*@
+<br />
+@*<form name='form'>
+        <input data-ng-model='user.password' type="password" name='password' placeholder='password' required>
+        <div ng-show="form.password.$error.required">
+            Field required
+        </div>
+        <input ng-model='user.password_verify' type="password" name='confirmPassword' placeholder='confirm password' required data-password-verify="user.password">
+        <div ng-show="form.confirmPassword.$error.required">
+            Field required!
+        </div>
+        <div ng-show="form.confirmPassword.$error.passwordVerify">
+            Fields are not equal!
+        </div>
+    </form>*@
+
+@*<form name="registerForm">
+        <div class="col-md-12">
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$dirty && registerForm.password.$invalid }">
+                <p class="help-text">Enter password</p>
+                <input type="password" class="form-control" id="password" name="password" placeholder="password" required ng-model="password" password-verify="{{confirmPassword}}">
+                <div class="help-block" ng-messages="registerForm.password.$error" ng-if="!registerForm.password.$valid">
+                    <p ng-message="passwordVerify">No match!</p>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid }">
+                <p class="help-text">Enter matching password</p>
+                <input class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required password-verify="{{password}}">
+                <div class="help-block" ng-messages="registerForm.confirmPassword.$error" ng-if="!registerForm.confirmPassword.$valid">
+                    <p ng-message="passwordVerify">No match!</p>
+                </div>
+            </div>
+        </div>
+    </form>*@
+<div my-dom-directive>Click Me!</div>
+<div class="col-md-4 col-md-offset-4">
+    <form class="form-horizontal" name="registerForm" ng-submit="RegisterUser()">
+        <fieldset>
+            <legend>REGISTER</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="firstName">First Name</label>
+                <div class="col-lg-10">
+                    <input class="form-control" type="text" id="firstName" ng-model="firstName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="lastName">Last Name</label>
+                <div class="col-lg-10">
+                    <input class="form-control" type="text" id="lastName" ng-model="lastName" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.utaID.$dirty && registerForm.utaID.$invalid }">
+                <label class="col-lg-2 control-label" for="utaID">UTA ID</label>
+                <div class="col-lg-10">
+                    <input class="form-control" name="utaID" ng-model="utaID" ng-maxlength="11" required>
+                    <div class="alert alert-dismissible alert-danger" ng-show="registerForm.utaID.$dirty && !registerForm.utaID.$valid">
+                        UTA ID is required and max length is 10.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="emailAddress">Email</label>
+                <div class="col-lg-10">
+                    <input class="form-control" type="email" ng-model="emailAddress" id="emailAddress" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$dirty && registerForm.password.$invalid }">
+                <label class="col-lg-2 control-label" for="password">Password</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password" required ng-model="password" password-verify="{{confirmPassword}}">
+                    <div class="alert alert-dismissible alert-danger" ng-messages="passwordVerify" ng-if="registerForm.confirmPassword.$dirty && !registerForm.confirmPassword.$valid">
+                        <p ng-message="passwordVerify">No match!</p>
+                    </div>
+                </div>
+                </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid }">
+                <label class="col-lg-2 control-label" for="confirmPassword">Confirm Password</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required password-verify="{{password}}">
+                    <div class="alert alert-dismissible alert-danger" ng-messages="registerForm.confirmPassword.$error" ng-if="registerForm.confirmPassword.$dirty && !registerForm.confirmPassword.$valid">
+                        <p ng-message="passwordVerify">No match!</p>
+                    </div>
+                </div>
+                </div>
+            @*<div class="form-group">
+                    <label class="col-lg-2 control-label" for="password">First Name</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="password" ng-model="firstName"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="password">Last Name</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="password" ng-model="lastName"  required>
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                    <label class="col-lg-2 control-label" for="password">Role</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="password" ng-model="registerForm.role"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="password">Status</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="password" ng-model="registerForm.status"  required>
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+

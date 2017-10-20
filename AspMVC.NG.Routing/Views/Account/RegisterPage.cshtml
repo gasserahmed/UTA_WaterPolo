@@ -1,0 +1,72 @@
+﻿@*register page*@
+<br />
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form-horizontal" name="registerForm" ng-submit="RegisterUser()">
+            <fieldset>
+                <legend class="blog-title" align="right">REGISTER</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="firstName">First Name</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="firstName" name="firstName" ng-model="firstName" ng-pattern="regex">
+                        <div class="alert alert-dismissible alert-danger" ng-show="registerForm.firstName.$dirty && !registerForm.firstName.$valid">
+                            First Name cannot cotain any number
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="lastName">Last Name</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="text" id="lastName" name="lastName" ng-model="lastName" required>
+                        <div class="alert alert-dismissible alert-danger" ng-show="registerForm.lastName.$dirty && !registerForm.lastName.$valid">
+                            Last Name cannot cotain any number
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : (registerForm.utaID.$dirty && registerForm.utaID.$invalid) || duplicated }">
+                    <label class="col-lg-2 control-label" for="utaID">UTA ID</label>
+                    <div class="col-lg-10">
+                        <input type="number" class="form-control" name="utaID" ng-model="utaID" ng-maxlength="10" ng-minlength="10" required>
+                        <div class="alert alert-dismissible alert-danger" ng-show="registerForm.utaID.$dirty && !registerForm.utaID.$valid">
+                            UTA ID is required and the length must be 10.
+                        </div>
+                        <div class="alert alert-dismissible alert-danger" ng-show="duplicated">
+                            This UTA ID already registered!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="emailAddress">Email</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" type="email" ng-model="emailAddress" id="emailAddress" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$dirty && registerForm.password.$invalid }">
+                    <label class="col-lg-2 control-label" for="password">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password" required ng-model="password" password-verify="{{confirmPassword}}">
+                        @*<div class="alert alert-dismissible alert-danger" ng-messages="passwordVerify" ng-if="registerForm.confirmPassword.$dirty && !registerForm.confirmPassword.$valid">
+                                <p ng-message="passwordVerify">No match!</p>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid }">
+                    <label class="col-lg-2 control-label" for="confirmPassword">Confirm Password</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required password-verify="{{password}}">
+                        <div class="alert alert-dismissible alert-danger" ng-messages="registerForm.confirmPassword.$error" ng-if="registerForm.confirmPassword.$dirty && !registerForm.confirmPassword.$valid">
+                            <p ng-message="passwordVerify">No match!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-default" type="reset">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

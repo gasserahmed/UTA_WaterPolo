@@ -1,0 +1,70 @@
+﻿@*register page*@ 
+<br />
+@*<form name='form'>
+    <input data-ng-model='user.password' type="password" name='password' placeholder='password' required>
+    <div ng-show="form.password.$error.required">
+        Field required
+    </div>
+    <input ng-model='user.password_verify' type="password" name='confirmPassword' placeholder='confirm password' required data-password-verify="user.password">
+    <div ng-show="form.confirmPassword.$error.required">
+        Field required!
+    </div>
+    <div ng-show="form.confirmPassword.$error.passwordVerify">
+        Fields are not equal!
+    </div>
+</form>*@
+<form name="registerForm">
+    <div class="col-md-12">
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$dirty && registerForm.password.$invalid }">
+            <p class="help-text">Enter password</p>
+            <input type="password" class="form-control" id="password" name="password" placeholder="password" required ng-model="password" password-verify="{{confirmPassword}}">
+            <div class="help-block" ng-messages="registerForm.password.$error" ng-if="!registerForm.password.$valid">
+                <p ng-message="required">This field is required</p>
+                <p ng-message="minlength">This field is too short</p>
+                <p ng-message="maxlength">This field is too long</p>
+                <p ng-message="required">This field is required</p>
+                <p ng-message="passwordVerify">No match!</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid }">
+            <p class="help-text">Enter matching password</p>
+            <input class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required password-verify="{{password}}">
+            <div class="help-block" ng-messages="registerForm.confirmPassword.$error" ng-if="!registerForm.confirmPassword.$valid">             
+                <p ng-message="required">This field is required</p>
+                <p ng-message="minlength">This field is too short</p>
+                <p ng-message="maxlength">This field is too long</p>
+                <p ng-message="required">This field is required</p>
+                <p ng-message="passwordVerify">No match!</p>
+                <p>{{registerForm.confirmPassword.$dirty}}</p>
+                <p>{{registerForm.confirmPassword.$valid}}</p>
+            </div>
+        </div>
+    </div>
+</form>
+<div my-dom-directive>Click Me!</div>
+@*<form name="add_user_form">
+    <div class="col-md-12">
+        <div class="form-group" ng-class="{ 'has-error' : add_user_form.user_password.$dirty && add_user_form.user_password.$invalid }">
+            <p class="help-text">Enter password</p>
+            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="password" required ng-model="user.user_password" password-verify="{{user.confirm_password}}">
+            <div class="help-block" ng-messages="add_user_form.user_password.$error" ng-if="add_user_form.user_password.$dirty">
+                <p ng-message="required">This field is required</p>
+                <p ng-message="minlength">This field is too short</p>
+                <p ng-message="maxlength">This field is too long</p>
+                <p ng-message="required">This field is required</p>
+                <p ng-message="passwordVerify">No match!</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : add_user_form.confirm_password.$dirty && add_user_form.confirm_password.$invalid }">
+            <p class="help-text">Enter matching password</p>
+            <input class="form-control" id="confirm_password" ng-model="user.confirm_password" name="confirm_password" type="password" placeholder="confirm password" required password-verify="{{user.user_password}}">
+            <div class="help-block" ng-messages="add_user_form.confirm_password.$error" ng-if="add_user_form.confirm_password.$dirty">
+                <p ng-message="required">This field is required</p>
+                <p ng-message="minlength">This field is too short</p>
+                <p ng-message="maxlength">This field is too long</p>
+                <p ng-message="required">This field is required</p>
+                <p ng-message="passwordVerify">No match!</p>
+            </div>
+        </div>
+    </div>
+</form>*@

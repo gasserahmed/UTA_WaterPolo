@@ -1,0 +1,127 @@
+﻿<br />
+<div class="container" ng-init="GetUsers()">
+    <div class="row">
+        <fieldset>
+            <legend class="blog-title" align="right">ADMIN</legend>
+            <div class="panel panel-default users-content">
+                <div class="panel-heading">User List @*<a href="javascript:void(0);" class="glyphicon glyphicon-plus" ng-click="AddNewIcon()"></a>*@</div>
+                <div class="alert alert-danger none"><p></p></div>
+                <div class="alert alert-success none"><p></p></div>
+                <div class="panel-body none formData">
+                    <form class="form-horizontal alert alert-warning" style="margin:0 auto;" name="user" ng-submit="">
+                        <fieldset>
+                            <legend>User</legend>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="first_name">First Name</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" id="first_name" ng-model="first_name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="last_name">Last Name</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" id="last_name" ng-model="last_name" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (user.utaid.$dirty && user.utaid.$invalid) || duplicated }">
+                                <label class="col-lg-2 control-label" for="utaid">uta id</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" name="utaid" ng-model="utaid" ng-maxlength="11" ng-minlength="11" required>
+                                    <div class="alert alert-dismissible alert-danger" ng-show="user.utaid.$dirty && !user.utaid.$valid">
+                                        uta id is required and max length is 10.
+                                    </div>
+                                    <div class="alert alert-dismissible alert-danger" ng-show="duplicated">
+                                        this uta id already registered!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="email">Email</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="email" ng-model="email" id="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : user.password.$dirty && user.password.$invalid }">
+                                <label class="col-lg-2 control-label" for="password">Password</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="password" required ng-model="password" password-verify="{{confirmPassword}}">
+                                    @*<div class="alert alert-dismissible alert-danger" ng-messages="passwordVerify" ng-if="user.confirmPassword.$dirty && !user.confirmPassword.$valid">
+                                        <p ng-message="passwordVerify">No match!</p>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : user.confirmPassword.$dirty && user.confirmPassword.$invalid }">
+                                <label class="col-lg-2 control-label" for="confirmPassword">Confirm Password</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required password-verify="{{password}}">
+                                    <div class="alert alert-dismissible alert-danger" ng-messages="user.confirmPassword.$error" ng-if="user.confirmPassword.$dirty && !user.confirmPassword.$valid">
+                                        <p ng-message="passwordVerify">No match!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="Role">Role:</label>
+                                <div class="col-lg-10">
+                                    <label for="" class="radio-inline role">
+                                        <input type="radio" name="member_role" ng-model="role" value="Admin">Admin
+                                    </label>
+                                    <label for="" class="radio-inline role">
+                                        <input type="radio" name="member_role" ng-model="role" value="Member">Member
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="Status">Status:</label>
+                                <div class="col-lg-10">
+                                    <label for="" class="radio-inline status">
+                                        <input type="radio" name="member_status" ng-model="status" value="Active">Active
+                                    </label>
+                                    <label for="" class="radio-inline status">
+                                        <input type="radio" name="member_status" ng-model="status" value="In-Active">In-Active
+                                    </label>
+                                    <label for="" class="radio-inline status">
+                                        <input type="radio" name="member_status" ng-model="status" value="Pending">Pending
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <a href="javascript:void(0);" class="btn btn-warning" onClick="$('.formData').slideUp();">Cancel</a>
+                                    <button class="btn btn-success" type="button" ng-click="UpdateUser()">Update</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="10%">UTA ID</th>
+                        <th width="15%">First Name</th>
+                        <th width="15%">Last name</th>
+                        <th width="15%">Email Address</th>
+                        <th width="10%">Role</th>
+                        <th width="10%">Status</th>
+                        <th width="10%">Last Activity</th>
+                        <th width="10%"></th>
+                    </tr>
+                    <tr ng-repeat="user in users">
+                        <td>{{$index + 1}}</td>
+                        <td>{{user.uta_id}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role}}</td>
+                        <td>{{user.status}}</td>
+                        <td>{{FormatJsonDate(user.last_activity) | date:'MM/dd/yyyy'}}</td>
+                        <td>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="EditRowEvent(user)"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="DeleteRowEvent(user)"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

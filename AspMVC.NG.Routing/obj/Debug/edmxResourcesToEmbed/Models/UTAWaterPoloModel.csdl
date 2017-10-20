@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="utawaterpoloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="about">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="mission" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="exec_board" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="practices" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="event">
+    <Key>
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" />
+    <Property Name="fee" Type="Decimal" Nullable="false" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="event_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="event_id" Type="Int32" Nullable="false" />
+    <Property Name="ticket_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" />
+    <Property Name="fee" Type="Decimal" Nullable="false" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="gallery">
+    <Key>
+      <PropertyRef Name="photo_id" />
+    </Key>
+    <Property Name="photo_id" Type="Int32" Nullable="false" />
+    <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="file_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="news_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="ticket_id" />
+    </Key>
+    <Property Name="uta_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="event_id" Type="Int32" Nullable="false" />
+    <Property Name="ticket_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="uta_id" />
+    </Key>
+    <Property Name="uta_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="last_activity" Type="DateTime" />
+  </EntityType>
+  <EntityContainer Name="utawaterpoloEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="abouts" EntityType="Self.about" />
+    <EntitySet Name="events" EntityType="Self.event" />
+    <EntitySet Name="event_list" EntityType="Self.event_list" />
+    <EntitySet Name="galleries" EntityType="Self.gallery" />
+    <EntitySet Name="news" EntityType="Self.news" />
+    <EntitySet Name="tickets" EntityType="Self.ticket" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <FunctionImport Name="getEventList">
+      <Parameter Name="uta_id" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

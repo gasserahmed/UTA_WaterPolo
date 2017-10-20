@@ -1,0 +1,111 @@
+﻿<br />
+<div class="container" ng-init="GetEvents()">
+    <div class="row">
+        <fieldset>
+            <legend class="blog-title" align="right">UPCOMING EVENTS</legend>
+            <div class="panel panel-default users-content">
+                <div class="panel-heading" ng-show="admin_status">Event List <a href="javascript:void(0);" class="glyphicon glyphicon-plus" ng-click="AddNewIcon()"></a></div>
+                <div class="alert alert-danger none"><p></p></div>
+                <div class="alert alert-success none"><p></p></div>
+                <div class="panel-body none formData">
+                    <form class="form-horizontal col-md-8 col-md-offset-2" name="eventForm">
+                        <div class="container">
+                            <div class="col-md-8">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading"><span ng-show="!event_id">Create a New </span><span ng-show="event_id">Update an </span>Event</div>
+                                    <div class="panel-body">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="description">Description</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" type="text" id="description"ng-model="description" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="location">Location</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" type="text" id="location"ng-model="location" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="startDate">Start Date</label>
+                                            <div class="col-lg-10">
+                                                <md-datepicker ng-model="startDate" md-placeholder="Enter date" required></md-datepicker>
+                                            </div>
+                                            @*<div class="alert alert-dismissible alert-danger" ng-show="checkDateTime(startDate,endDate)">
+                                                {{errMessage}}
+                                            </div>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="endDate">End Date</label>
+                                            <div class="col-lg-10">
+                                                <md-datepicker ng-model="endDate" md-placeholder="Enter date" required></md-datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="startTime">Start Time</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" type="time" id="endTime" name="input" ng-model="startTime"
+                                                       placeholder="hh:mma" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="endTime">End Time</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" type="time" id="endTime" name="input" ng-model="endTime"
+                                                       placeholder="hh:mma" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="fee">Fee</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" type="text" id="fee" ng-model="fee" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-10 col-lg-offset-2">
+                                                <a href="javascript:void(0);" class="btn btn-warning" onClick="$('.formData').slideUp();">Cancel</a>
+                                                <button class="btn btn-success" type="button" ng-click="AddEvent()" ng-hide="event_id">Add Event</button>
+                                                <button class="btn btn-success" type="button" ng-click="UpdateEvent()" ng-hide="!event_id">Update Event</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="15%">Description</th>
+                        <th width="20%">Location</th>
+                        <th width="10%">Start Date</th>
+                        <th width="10%">End Date</th>
+                        <th width="10%">Start Time</th>
+                        <th width="10%">End Time</th>
+                        <th width="5%">Fee</th>                        
+                        <th width="15%"></th>
+                    </tr>
+                    <tr ng-repeat="event in events">
+                        <td>{{$index + 1}}</td>
+                        <td>{{event.description}}</td>
+                        <td>{{event.location}}</td>
+                        <td>{{FormatJsonDate(event.start_date) | date:'MM/dd/yyyy'}}</td>
+                        <td>{{FormatJsonDate(event.end_date) | date:'MM/dd/yyyy'}}</td>
+                        <td>{{FormatJsonDate(event.start_time) | date:'h:mma'}}</td>
+                        <td>{{FormatJsonDate(event.end_time) | date:'h:mma'}}</td>
+                        <td>{{event.fee | currency}}</td>                        
+                        <td>
+                            <a ng-show="admin_status" href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="EditRowEvent(event)"></a>
+                            <a ng-show="admin_status" href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="DeleteRowEvent(event)"></a>
+                            <a ng-show="!admin_status && login_status && !event.ticket_id" href="javascript:void(0);" class="glyphicon  glyphicon-ok" ng-click="SignUpEvent(event)" style="color: green"> Sign-up</a>
+                            <a ng-show="!admin_status && login_status && event.ticket_id" href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="SignOutEvent(event)" style="color: red"> Sign-out</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

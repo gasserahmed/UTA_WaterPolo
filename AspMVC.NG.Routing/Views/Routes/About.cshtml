@@ -1,0 +1,53 @@
+﻿@*about page*@
+<br />
+<div class="container" ng-init="GetEvents()">
+
+    <form class="form-horizontal col-md-8 col-md-offset-2" ng-init="GetAbout()">
+        <fieldset>
+            <legend align="right">
+                ABOUT US
+
+            </legend>
+            <div class="container">
+                <div class="col-md-8 ">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">MISSION</div>
+                        <div class="panel-body">
+                            <textarea ng-show="admin_status" rows="4" cols="50" class="form-control" id="mission" ng-model="mission" required></textarea>
+                            <textarea ng-show="!admin_status" rows="4" cols="50" class="form-control" id="mission" ng-model="mission" readonly required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">EXECUTIVE BOARD</div>
+                        <div class="panel-body">
+                            <textarea ng-show="admin_status" rows="4" cols="50" class="form-control" id="board" ng-model="exec_board" required></textarea>
+                            <textarea ng-show="!admin_status" rows="4" cols="50" class="form-control" id="board" ng-model="exec_board" readonly required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">PRACTICES</div>
+                        <div class="panel-body">
+                            <textarea ng-show="admin_status" rows="2" cols="50" class="form-control" id="mission" ng-model="practices" required></textarea>
+                            <textarea ng-show="!admin_status" rows="2" cols="50" class="form-control" id="mission" ng-model="practices" readonly required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">ADDRESS</div>
+                        <div class="panel-body">
+                            <textarea ng-show="admin_status" rows="2" cols="50" class="form-control" id="mission" ng-model="address" required></textarea>
+                            <textarea ng-show="!admin_status" rows="2" cols="50" class="form-control" id="mission" ng-model="address" readonly required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="admin_status">
+                        <div class="col-lg-10">
+                            <button class="btn btn-success" type="button" ng-click="UpdateAbout()" ng-hide="event_id">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    </div>

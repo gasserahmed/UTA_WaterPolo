@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="utawaterpoloModelStoreContainer" CdmEntityContainer="utawaterpoloEntities">
+    <EntitySetMapping Name="abouts">
+      <EntityTypeMapping TypeName="utawaterpoloModel.about">
+        <MappingFragment StoreEntitySet="about">
+          <ScalarProperty Name="mission" ColumnName="mission" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="exec_board" ColumnName="exec_board" />
+          <ScalarProperty Name="practices" ColumnName="practices" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="events">
+      <EntityTypeMapping TypeName="utawaterpoloModel.event">
+        <MappingFragment StoreEntitySet="event">
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="fee" ColumnName="fee" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="event_list">
+      <EntityTypeMapping TypeName="utawaterpoloModel.event_list">
+        <MappingFragment StoreEntitySet="event_list">
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="fee" ColumnName="fee" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="galleries">
+      <EntityTypeMapping TypeName="utawaterpoloModel.gallery">
+        <MappingFragment StoreEntitySet="gallery">
+          <ScalarProperty Name="photo_id" ColumnName="photo_id" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news">
+      <EntityTypeMapping TypeName="utawaterpoloModel.news">
+        <MappingFragment StoreEntitySet="news">
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="news_date" ColumnName="news_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tickets">
+      <EntityTypeMapping TypeName="utawaterpoloModel.ticket">
+        <MappingFragment StoreEntitySet="ticket">
+          <ScalarProperty Name="uta_id" ColumnName="uta_id" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="utawaterpoloModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="uta_id" ColumnName="uta_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="last_activity" ColumnName="last_activity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getEventList" FunctionName="utawaterpoloModel.Store.getEventList" />
+  </EntityContainerMapping>
+</Mapping>

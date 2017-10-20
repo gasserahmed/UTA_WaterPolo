@@ -1,0 +1,192 @@
+﻿<style>
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 19px;
+    }
+
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+
+
+    .modal-body {
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    #lightbox .modal-content {
+        display: inline-block;
+        text-align: center;
+    }
+
+    #lightbox .close {
+        opacity: 1;
+        color: rgb(255, 255, 255);
+        background-color: rgb(25, 25, 25);
+        padding: 5px 8px;
+        border-radius: 30px;
+        border: 2px solid rgb(255, 255, 255);
+        position: absolute;
+        top: -15px;
+        right: -55px;
+        z-index: 1032;
+    }
+
+    .likeBtn {
+        cursor: pointer;
+    }
+
+    .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+        margin-right: -382px;
+    }
+
+    .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+        margin-left: -71px;
+    }
+</style>
+<br/><br />
+<div class="container">
+    <fieldset id="imageField">
+        <legend class="blog-title" align="right">
+            @*<button type="button" id="addPhoto" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-plus"></i></button>*@
+            @*<label ng-show ="admin_status" for="imageUpload" class="custom-file-upload">
+                <i class="glyphicon glyphicon-plus"></i>
+            </label>*@
+            <input id="imageUpload" type="file" />
+            GALLERY
+        </legend>
+        <div class="col-xs-6 col-sm-3">
+            <a class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                <img src="~/Assets/Images/wp1.jpg" alt="...">
+            </a>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <a class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                <img src="~/Assets/Images/wp2.jpg" alt="...">
+            </a>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <a class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                <img src="~/Assets/Images/wp3.jpg" alt="...">
+            </a>
+        </div>
+    </fieldset>
+
+</div>
+<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+                @*<br /><br /><br /><br />*@
+                @*<span class="glyphicon glyphicon-heart likeBtn" style="color: gray;font-size: 1.5em"></span>
+                <label id="likeCounter" style="color: gray;font-size: 1.0em">0</label>*@
+                @*<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>*@
+                @*<div class="fb-share-button" data-href="http://localhost:56770" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+                <div class="fb-like"
+                     data-share="true"
+                     data-width="450"
+                     data-show-faces="true">
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var $lightbox = $('#lightbox');
+        $('[data-target="#lightbox"]').on('click', function (event) {
+            var $img = $(this).find('img'),
+                src = $img.attr('src'),
+                alt = $img.attr('alt'),
+                css = {
+                    'maxWidth': $(window).width() - 200,
+                    'maxHeight': $(window).height() - 200
+                };
+            $lightbox.find('.close').addClass('hidden');
+            $lightbox.find('img').attr('src', src);
+            $lightbox.find('img').attr('alt', alt);
+            $lightbox.find('img').css(css);
+
+        });
+
+        $lightbox.on('shown.bs.modal', function (e) {
+            var $img = $lightbox.find('img');
+
+            $lightbox.find('.modal-dialog').css({ 'width': $img.width() });
+            $lightbox.find('.close').removeClass('hidden');
+        });
+
+        $(".likeBtn").on("click", function () {
+
+            var alreadyLiked = $('.likeBtn').css('color').toString().includes("255");
+            if (alreadyLiked == true) {
+                $("#likeCounter").html(parseInt($("#likeCounter").html()) - 1);
+                $('.likeBtn').css('color', 'gray');
+                $('#likeCounter').css('color', 'gray');
+            } else {
+                $("#likeCounter").html(parseInt($("#likeCounter").html()) + 1);
+                $('.likeBtn').css('color', 'red');
+                $('#likeCounter').css('color', 'red');
+            }
+
+        });
+
+
+        document.getElementById('imageUpload').onchange = function (evt) {
+            var selectedFile = evt.target.files[0];
+            var reader = new FileReader();
+
+          
+            alert("SRC: " + selectedFile.name);
+            var fieldset_parent = $("#imageField:eq(3)").clone();
+            $("#fieldsett:last").after($(fieldset_parent).clone());
+
+            reader.onload = function (event) {
+            };
+
+            reader.readAsDataURL(selectedFile);
+         }
+
+
+
+    });
+</script>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1848882288662099',
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
